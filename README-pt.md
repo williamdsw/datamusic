@@ -1,4 +1,4 @@
-# datamusic-php-sample| [English](README.md) - Português
+# datamusic-php-sample | [English](README.md) - Português
 Projeto feito com objetivo de simular um estoque de caixa de uma loja que vende artefatos musicais, 
 como acessórios, instrumentos e mídias. 
 Utilizei [PHP](https://www.php.net/) para a parte de Backend, 
