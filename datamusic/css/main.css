@@ -1,0 +1,37 @@
+
+div.last-list
+{
+    background-color: #394046;
+    padding: 5px;
+}
+
+div.last-list h5
+{
+    text-align: center;
+}
+
+ul.list-unstyled
+{
+    margin: 5px;
+}
+
+li.item
+{
+    border-bottom: 2px dashed #4d585f;
+    padding: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+li.item a
+{
+    text-decoration: none;
+    color: white;
+    font-style: italic;
+}
+
+li.item a:hover
+{
+    font-weight: bold;
+}
