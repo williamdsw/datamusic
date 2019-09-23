@@ -8,22 +8,22 @@
         {
             $connection = open_connection ();
             
-            /* Parametros */
+            // Parameters
             $name = $_POST["name"];
             $password = $_POST["password"];
 
-            /* sql */
-            $sql = " SELECT user_id, name from user ";
-            $sql .= " WHERE name = ? ";
-            $sql .= " AND DECODE (password, 'mykey') = ? ";
+            // SQL query
+            $query = " SELECT user_id, name from user ";
+            $query .= " WHERE name = ? ";
+            $query .= " AND DECODE (password, 'mykey') = ? ";
             
-            /* Bind parameters */
-            $statement = $connection -> prepare ($sql);
+            // Bind parameters
+            $statement = $connection -> prepare ($query);
             $statement -> bind_param ("ss", $name, $password);
             $statement -> execute ();
             $result = $statement -> get_result ();
             
-            /* Result */
+            // Data
             $executed = ($result -> num_rows == 1);
             $data["success"] = $executed;
             $data["user"] = ($result -> fetch_object ());

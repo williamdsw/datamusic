@@ -61,6 +61,7 @@
         <script src="libs/popper/popper.min.js"></script>
         <script src="libs/bootstrap/js/bootstrap.min.js"></script>
         <script src="js/login.js"></script>
+        <script src="js/utilities.js"></script>
         
         <!-- modals -->
         <?php require_once ("components/modals.php"); ?>

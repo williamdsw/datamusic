@@ -1,13 +1,15 @@
 "use strict";
 
+//--------------------------------------------------------------------------------------//
+// HELPER FUNCTIONS
+
 $(document).ready (function ()
 {
-    /* Fill selects */
     getAccessoryTypes ();
     
-    /* Calls data */
-    let accessory_id = $("input#accessory_id").val ();
-    getAccessoryData (accessory_id);
+    // Gets data
+    let accessoryID = $("input#accessory_id").val ();
+    getAccessoryData (accessoryID);
     
     $("form#create_form").submit (function (ev)
     {
@@ -16,19 +18,22 @@ $(document).ready (function ()
     });
 });
 
-function getAccessoryData (accessory_id)
+/**
+ * Gets the accessory data by ID
+ */
+function getAccessoryData (accessoryID)
 {
     $.ajax (
     {
         type: "GET",
-        data: "accessory_id=" + accessory_id,
+        data: `accessory_id=${accessoryID}`,
         url: "../../private/accessory-select-unique.php",
         async: true
     }).done (function (data)
     {
         data = $.parseJSON (data);
         
-        /* Filling fields */
+        // Filling fields
         if (data.length !== 0)
         {
             $("input#name").val (data.name);
@@ -40,12 +45,13 @@ function getAccessoryData (accessory_id)
         }
     }).fail (function ()
     {
-        $("div#modal_fail div.modal-header h4.modal-title b").html ("Attention");
-        $("div#modal_fail div.modal-body").html ("System error, please try later or contact the administrator");
-        $("div#modal_fail").modal();
+        showFailModal ();
     });
 }
 
+/**
+ * Send the form data to update
+ */
 function update (form)
 {
     $.ajax (
@@ -64,15 +70,11 @@ function update (form)
         }
         else 
         {
-            $("div#modal_fail div.modal-header h4.modal-title b").html ("Attention");
-            $("div#modal_fail div.modal-body").html ("System error, please try later or contact the administrator");
-            $("div#modal_fail").modal();
+            showFailModal ();
         }
 
     }).fail (function ()
     {
-        $("div#modal_fail div.modal-header h4.modal-title b").html ("Attention");
-        $("div#modal_fail div.modal-body").html ("System error, please try later or contact the administrator");
-        $("div#modal_fail").modal();
+        showFailModal ();
     });
 }

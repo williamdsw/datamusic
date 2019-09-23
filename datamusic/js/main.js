@@ -1,8 +1,11 @@
 "use strict";
 
+//--------------------------------------------------------------------------------------//
+// HELPER FUNCTIONS
+
 $(document).ready (function ()
 {
-    /* Links */
+    // Links
     $("a#link_brand").attr ("href", "#");
     $("a#link_accessory_create").attr ("href", "accessory/create");
     $("a#link_accessory_search").attr ("href", "accessory/search");
@@ -34,7 +37,7 @@ function getLastAccessories ()
         {
             let template = "";
             
-            /* table template */
+            // Table's template
             $.each (data, function (index, value)
             {
                 template += `<li class="item">`;
@@ -42,7 +45,6 @@ function getLastAccessories ()
                 template += `</li>`;
             });
             
-            /* Pass template */
             $("ul#last_accessories").html (template);
         }
         else 
@@ -78,7 +80,7 @@ function getLastInstruments ()
         {
             let template = "";
             
-            /* table template */
+            // Table's template
             $.each (data, function (index, value)
             {
                 template += `<li class="item">`;
@@ -86,7 +88,6 @@ function getLastInstruments ()
                 template += `</li>`;
             });
             
-            /* Pass template */
             $("ul#last_instruments").html (template);
         }
         else 
@@ -122,7 +123,7 @@ function getLastMedia ()
         {
             let template = "";
             
-            /* table template */
+            // Table's template
             $.each (data, function (index, value)
             {
                 template += `<li class="item">`;
@@ -130,7 +131,6 @@ function getLastMedia ()
                 template += `</li>`;
             });
             
-            /* Pass template */
             $("ul#last_media").html (template);
         }
         else 
@@ -153,9 +153,10 @@ function getLastMedia ()
 function callCounter ()
 {
     let counter = 30;
-    let id = setInterval (function ()
+    let timeout = 1000;
+    let intervalID = setInterval (function ()
     {
-        $("h4#counter").text ("Refreshing in " + counter + " seconds");
+        $("h4#counter").text (`Refreshing in ${counter} seconds`);
         counter--;
         
         if (counter === 0)
@@ -163,7 +164,7 @@ function callCounter ()
             counter = 30;
             $("h4#counter").text ("Updating...");
             getLastAccessories ();
-            clearInterval (id);
+            clearInterval (intervalID);
         }
-    }, 1000);
+    }, timeout);
 }

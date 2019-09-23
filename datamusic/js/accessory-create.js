@@ -1,5 +1,8 @@
 "use strict";
 
+//--------------------------------------------------------------------------------------//
+// HELPER FUNCTIONS
+
 $(document).ready (function ()
 {
     getAccessoryTypes ();
@@ -11,6 +14,9 @@ $(document).ready (function ()
     });
 });
 
+/**
+ * Insert the form data into the table
+ */
 function insert (form)
 {
     $.ajax (
@@ -32,15 +38,11 @@ function insert (form)
         }
         else 
         {
-            $("div#modal_fail div.modal-header h4.modal-title b").html ("Attention");
-            $("div#modal_fail div.modal-body").html ("System error, please try later or contact the administrator");
-            $("div#modal_fail").modal();
+            showFailModal ();
         }
 
     }).fail (function ()
     {
-        $("div#modal_fail div.modal-header h4.modal-title b").html ("Attention");
-        $("div#modal_fail div.modal-body").html ("System error, please try later or contact the administrator");
-        $("div#modal_fail").modal();
+        showFailModal ();
     });
 }

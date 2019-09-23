@@ -1,6 +1,5 @@
 <?php
     
-    /* Open connection to server */
     function open_connection ()
     {
         try
@@ -17,13 +16,12 @@
         }
         catch (Exception $exception)
         {
-            echo "Excessão: " .  $exception -> getMessage ();
+            echo "Exception: " .  $exception -> getMessage ();
         }
         
         return $connection;
     }
 
-    /* Close connection to server */
     function close_connection ($connection)
     {
         $connection -> close ();

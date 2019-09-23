@@ -2,13 +2,13 @@
     if (isset ($_POST["instrument_id"]))
     {
         require_once ("connection.php");
-        $retorno = array ();
+        $data = array ();
 
         try
         {
             $connection = open_connection ();
 
-            /* Parameters */
+            // Parameters
             $instrument_id = $_POST["instrument_id"];
             $name = $_POST["name"];
             $description = $_POST["description"];
@@ -19,32 +19,32 @@
             $quantity = $_POST["quantity"];
             $last_changed = date ("Y-m-d H:i:s");
 
-            /* sql */
-            $sql = " UPDATE instrument ";
-            $sql .= " SET name = ?, description = ?, brand = ?, ";
-            $sql .= "     type = ?, state = ?, price = ?, quantity = ?, ";
-            $sql .= "     last_changed = ? ";
-            $sql .= " WHERE instrument_id = ? ";
+            // SQL query
+            $query = " UPDATE instrument ";
+            $query .= " SET name = ?, description = ?, brand = ?, ";
+            $query .= "     type = ?, state = ?, price = ?, quantity = ?, ";
+            $query .= "     last_changed = ? ";
+            $query .= " WHERE instrument_id = ? ";
 
-            /* Bind parameters */
-            $statement = $connection -> prepare ($sql);
+            // Bind parameters
+            $statement = $connection -> prepare ($query);
             $executed = ($statement && ($statement -> bind_param ("sssssdisi", $name, $description, $brand, $type, $state, $price, $quantity, $last_changed, $instrument_id)) && ($statement -> execute ()) && ($statement -> affected_rows === 1) ? true : false);
             $statement -> close ();
 
-            /* Return */
-            $retorno["success"] = $executed;
-            $retorno["message"] = ($executed ? "Instrument updated successfully!" : "System error, try again later");
+            // Data
+            $data["success"] = $executed;
+            $data["message"] = ($executed ? "Instrument updated successfully!" : "System error, try again later");
         }
         catch (Exception $exception)
         {
-            $retorno["success"] = false;
-            $retorno["message"] = $exception -> getMessage ();
+            $data["success"] = false;
+            $data["message"] = $exception -> getMessage ();
         }
         finally
         {
             close_connection ($connection);
         }
 
-        echo json_encode ($retorno);
+        echo json_encode ($data);
     }
 ?>

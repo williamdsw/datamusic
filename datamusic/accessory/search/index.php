@@ -88,6 +88,7 @@
         <script src="../../libs/jquery/jquery-3.4.0.min.js"></script>
         <script src="../../libs/popper/popper.min.js"></script>
         <script src="../../libs/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../../js/utilities.js"></script>
         <script src="../../js/accessory-search.js"></script>
         
         <?php require_once ("../../components/modals.php"); ?>

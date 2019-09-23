@@ -1,15 +1,17 @@
 "use strict";
 
+//--------------------------------------------------------------------------------------//
+// HELPER FUNCTIONS
+
 $(document).ready (function ()
 {
-    /* Fill selects */
     getMusicalGenres ();
     getMediaTypes ();
     getLanguages ();
     
-    /* Calls data */
-    let media_id = $("input#media_id").val ();
-    getMediaData (media_id);
+    // Gets data
+    let mediaID = $("input#media_id").val ();
+    getMediaData (mediaID);
     
     $("form#create_form").submit (function (ev)
     {
@@ -18,19 +20,22 @@ $(document).ready (function ()
     });
 });
 
-function getMediaData (media_id)
+/**
+ * Gets the accessory data by ID
+ */
+function getMediaData (mediaID)
 {
     $.ajax (
     {
         type: "GET",
-        data: "media_id=" + media_id,
+        data: `media_id=${mediaID}`,
         url: "../../private/media-select-unique.php",
         async: true
     }).done (function (data)
     {
         data = $.parseJSON (data);
         
-        /* Filling fields */
+        // Filling fields
         if (data.length !== 0)
         {
             $("input#name").val (data.name);
@@ -46,12 +51,13 @@ function getMediaData (media_id)
         }
     }).fail (function ()
     {
-        $("div#modal_fail div.modal-header h4.modal-title b").html ("Attention");
-        $("div#modal_fail div.modal-body").html ("System error, please try later or contact the administrator");
-        $("div#modal_fail").modal();
+        showFailModal ();
     });
 }
 
+/**
+ * Send the form data to update
+ */
 function update (form)
 {
     $.ajax (
@@ -70,15 +76,11 @@ function update (form)
         }
         else 
         {
-            $("div#modal_fail div.modal-header h4.modal-title b").html ("Attention");
-            $("div#modal_fail div.modal-body").html ("System error, please try later or contact the administrator");
-            $("div#modal_fail").modal();
+            showFailModal ();
         }
 
     }).fail (function ()
     {
-        $("div#modal_fail div.modal-header h4.modal-title b").html ("Attention");
-        $("div#modal_fail div.modal-body").html ("System error, please try later or contact the administrator");
-        $("div#modal_fail").modal();
+        showFailModal ();
     });
 }

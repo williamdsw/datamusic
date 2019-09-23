@@ -1,5 +1,8 @@
 "use strict";
 
+//--------------------------------------------------------------------------------------//
+// HELPER FUNCTIONS
+
 $(document).ready (function ()
 {
     getMusicalGenres ();
@@ -13,6 +16,9 @@ $(document).ready (function ()
     });
 });
 
+/**
+ * Insert the form data into the table
+ */
 function insert (form)
 {
     $.ajax (
@@ -29,20 +35,16 @@ function insert (form)
         {
             $("div#modal_success div.modal-header h4.modal-title b").html ("Success");
             $("div#modal_success div.modal-body").html ("Media created successfully");
-            $("div#modal_success").modal();
+            $("div#modal_success").modal ();
             $("button#btn_reset").click ();
         }
         else 
         {
-            $("div#modal_fail div.modal-header h4.modal-title b").html ("Attention");
-            $("div#modal_fail div.modal-body").html ("System error, please try later or contact the administrator");
-            $("div#modal_fail").modal();
+            showFailModal ();
         }
 
     }).fail (function ()
     {
-        $("div#modal_fail div.modal-header h4.modal-title b").html ("Attention");
-        $("div#modal_fail div.modal-body").html ("System error, please try later or contact the administrator");
-        $("div#modal_fail").modal();
+        showFailModal ();
     });
 }

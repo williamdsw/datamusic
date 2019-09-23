@@ -6,35 +6,35 @@
     {
         $connection = open_connection ();
         
-        /* Parameters */
+        // Parameters
         $column = $_GET["column"];
         $content = $_GET["content"];
         $last = $_GET["last"];
 
-        /* sql */
-        $sql = " SELECT instrument_id, name, description, brand, ";
-        $sql .= "       type, state, price, quantity, last_changed ";
-        $sql .= " FROM instrument ";
+        // SQL query
+        $query = " SELECT instrument_id, name, description, brand, ";
+        $query .= "       type, state, price, quantity, last_changed ";
+        $query .= " FROM instrument ";
         
-        /* Format parameters */
+        // Format parameters
         if (!empty ($column))
         {
-            $sql .= sprintf (" WHERE %s LIKE '%s' ", $column, "%" . $content . "%");
-            $sql .= sprintf (" ORDER BY %s  ", $column);
+            $query .= sprintf (" WHERE %s LIKE '%s' ", $column, "%" . $content . "%");
+            $query .= sprintf (" ORDER BY %s  ", $column);
         }
         
         if (!empty ($last))
         {
-            $sql .= " ORDER BY last_changed desc ";
-            $sql .= " LIMIT 10 ";
+            $query .= " ORDER BY last_changed desc ";
+            $query .= " LIMIT 10 ";
         }
         
-        /* Statement */
-        $statement = $connection -> prepare ($sql);
+        // Statement
+        $statement = $connection -> prepare ($query);
         $statement -> execute ();
         $result = $statement -> get_result ();
         
-        /* Pass data */
+        // Getting data
         while ($row = $result -> fetch_object ())
         {
             $data[] = $row;
@@ -44,8 +44,8 @@
     }
     catch (Exception $exception)
     {
-        $retorno["success"] = false;
-        $retorno["message"] = $exception -> getMessage ();
+        $data["success"] = false;
+        $data["message"] = $exception -> getMessage ();
     }
     finally
     {

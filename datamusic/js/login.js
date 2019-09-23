@@ -1,5 +1,8 @@
 "use strict";
 
+//--------------------------------------------------------------------------------------//
+// HELPER FUNCTIONS
+
 $(document).ready (function ()
 {
     $("form#login_form").submit (function (ev)
@@ -9,6 +12,9 @@ $(document).ready (function ()
     });
 });
 
+/**
+ * Checks the user input for login
+ */
 function checkLogin (form)
 {
     $.ajax (
@@ -29,17 +35,18 @@ function checkLogin (form)
         {
             $("div#modal_fail div.modal-header h4.modal-title b").html ("Incorrect");
             $("div#modal_fail div.modal-body").html ("User or password incorrect. Try again");
-            $("div#modal_fail").modal();
+            $("div#modal_fail").modal ();
         }
 
     }).fail (function ()
     {
-        $("div#modal_fail div.modal-header h4.modal-title b").html ("Attention");
-        $("div#modal_fail div.modal-body").html ("System error, please try later or contact the administrator");
-        $("div#modal_fail").modal();
+        showFailModal ();
     });
 }
 
+/**
+ * Creates an user session based on data
+ */
 function createSessionRedirect (data)
 {
     let user = JSON.stringify (data.user);
@@ -47,7 +54,7 @@ function createSessionRedirect (data)
     $.ajax (
     {
         type: "POST",
-        data: "user=" + user,
+        data: `user=${user}`,
         url: "private/create-session.php",
         async: false
     }).done (function (data)
@@ -55,8 +62,6 @@ function createSessionRedirect (data)
         window.location.replace ("main.php");
     }).fail (function ()
     {
-        $("div#modal_fail div.modal-header h4.modal-title b").html ("Attention");
-        $("div#modal_fail div.modal-body").html ("System error, please try later or contact the administrator");
-        $("div#modal_fail").modal();
+        showFailModal ();
     });
 }

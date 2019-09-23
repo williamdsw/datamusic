@@ -8,23 +8,23 @@
         {
             $connection = open_connection ();
 
-            /* Parameters */
+            // Parameters
             $media_id = $_GET["media_id"];
             
-            /* sql */
-            $sql = " SELECT media_id, name, artist, description, genre, ";
-            $sql .= "       year, type, state, price, quantity, ";
-            $sql .= "       language, last_changed ";
-            $sql .= " FROM media ";
-            $sql .= " WHERE media_id = ? ";
+            // SQL query
+            $query = " SELECT media_id, name, artist, description, genre, ";
+            $query .= "       year, type, state, price, quantity, ";
+            $query .= "       language, last_changed ";
+            $query .= " FROM media ";
+            $query .= " WHERE media_id = ? ";
 
-            /* Bind parameters */
-            $statement = $connection -> prepare ($sql);
+            // Bind parameters
+            $statement = $connection -> prepare ($query);
             $statement -> bind_param ("i", $media_id);
             $statement -> execute ();
             $result = $statement -> get_result ();
 
-            /* Pass data */
+            // Getting data
             if ($row = $result -> fetch_object ())
             {
                 foreach ($row as $key => $value)

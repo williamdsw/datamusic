@@ -8,22 +8,22 @@
         {
             $connection = open_connection ();
 
-            /* Parameters */
+            // Parameters
             $instrument_id = $_GET["instrument_id"];
             
-            /* sql */
-            $sql = " SELECT instrument_id, name, description, brand, ";
-            $sql .= "       type, state, price, quantity, last_changed ";
-            $sql .= " FROM instrument ";
-            $sql .= " WHERE instrument_id = ? ";
+            // SQL query
+            $query = " SELECT instrument_id, name, description, brand, ";
+            $query .= "       type, state, price, quantity, last_changed ";
+            $query .= " FROM instrument ";
+            $query .= " WHERE instrument_id = ? ";
 
-            /* Bind parameters */
-            $statement = $connection -> prepare ($sql);
+            // Bind parameters
+            $statement = $connection -> prepare ($query);
             $statement -> bind_param ("i", $instrument_id);
             $statement -> execute ();
             $result = $statement -> get_result ();
 
-            /* Pass data */
+            // Getting data
             if ($row = $result -> fetch_object ())
             {
                 foreach ($row as $key => $value)

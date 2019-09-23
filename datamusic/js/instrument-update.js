@@ -1,13 +1,15 @@
 "use strict";
 
+//--------------------------------------------------------------------------------------//
+// HELPER FUNCTIONS
+
 $(document).ready (function ()
 {
-    /* Fill selects */
     getInstrumentTypes ();
     
-    /* Calls data */
-    let instrument_id = $("input#instrument_id").val ();
-    getInstrumentData (instrument_id);
+    // Gets data
+    let instrumentID = $("input#instrument_id").val ();
+    getInstrumentData (instrumentID);
     
     $("form#create_form").submit (function (ev)
     {
@@ -16,19 +18,22 @@ $(document).ready (function ()
     });
 });
 
-function getInstrumentData (instrument_id)
+/**
+ * Gets the accessory data by ID
+ */
+function getInstrumentData (instrumentID)
 {
     $.ajax (
     {
         type: "GET",
-        data: "instrument_id=" + instrument_id,
+        data: `instrument_id=${instrumentID}`,
         url: "../../private/instrument-select-unique.php",
         async: true
     }).done (function (data)
     {
         data = $.parseJSON (data);
         
-        /* Filling fields */
+        // Filling fields
         if (data.length !== 0)
         {
             $("input#name").val (data.name);
@@ -41,12 +46,13 @@ function getInstrumentData (instrument_id)
         }
     }).fail (function ()
     {
-        $("div#modal_fail div.modal-header h4.modal-title b").html ("Attention");
-        $("div#modal_fail div.modal-body").html ("System error, please try later or contact the administrator");
-        $("div#modal_fail").modal();
+        showFailModal ();
     });
 }
 
+/**
+ * Send the form data to update
+ */
 function update (form)
 {
     $.ajax (
@@ -65,15 +71,11 @@ function update (form)
         }
         else 
         {
-            $("div#modal_fail div.modal-header h4.modal-title b").html ("Attention");
-            $("div#modal_fail div.modal-body").html ("System error, please try later or contact the administrator");
-            $("div#modal_fail").modal();
+            showFailModal ();
         }
 
     }).fail (function ()
     {
-        $("div#modal_fail div.modal-header h4.modal-title b").html ("Attention");
-        $("div#modal_fail div.modal-body").html ("System error, please try later or contact the administrator");
-        $("div#modal_fail").modal();
+        showFailModal ();
     });
 }

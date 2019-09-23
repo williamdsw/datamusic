@@ -1,5 +1,8 @@
 "use strict";
 
+//--------------------------------------------------------------------------------------//
+// HELPER FUNCTIONS
+
 /**
  * Fills the select with a list of accessory types
  */
@@ -14,8 +17,8 @@ function getAccessoryTypes ()
     {
         let types = data.split ("|");
         
-        /* Template */
-        let template = `<option value=""> *Choose an Accessory Type </option>`;
+        // Template
+        let template = `<option value=""> * Choose an Accessory Type </option>`;
         $.each (types, function (index, value)
         {
             if (value !== "")
@@ -28,9 +31,7 @@ function getAccessoryTypes ()
 
     }).fail (function ()
     {
-        $("div#modal_fail div.modal-header h4.modal-title b").html ("Attention");
-        $("div#modal_fail div.modal-body").html ("System error, please try later or contact the administrator");
-        $("div#modal_fail").modal();
+        showFailModal ();
     });
 }
 
@@ -48,8 +49,8 @@ function getInstrumentTypes ()
     {
         let types = data.split ("|");
         
-        /* Template */
-        let template = `<option value=""> *Choose an Instrument Type </option>`;
+        // Template
+        let template = `<option value=""> * Choose an Instrument Type </option>`;
         $.each (types, function (index, value)
         {
             if (value !== "")
@@ -62,9 +63,7 @@ function getInstrumentTypes ()
 
     }).fail (function ()
     {
-        $("div#modal_fail div.modal-header h4.modal-title b").html ("Attention");
-        $("div#modal_fail div.modal-body").html ("System error, please try later or contact the administrator");
-        $("div#modal_fail").modal();
+        showFailModal ();
     });
 }
 
@@ -82,7 +81,7 @@ function getLanguages ()
     {
         let languages = data.split ("|");
         
-        /* Template */
+        // Template
         let template = `<option value=""> Choose an Language </option>`;
         $.each (languages, function (index, value)
         {
@@ -96,9 +95,7 @@ function getLanguages ()
 
     }).fail (function ()
     {
-        $("div#modal_fail div.modal-header h4.modal-title b").html ("Attention");
-        $("div#modal_fail div.modal-body").html ("System error, please try later or contact the administrator");
-        $("div#modal_fail").modal();
+        showFailModal ();
     });
 }
 
@@ -116,8 +113,8 @@ function getMediaTypes ()
     {
         let types = data.split ("|");
         
-        /* Template */
-        let template = `<option value=""> *Choose an Media Type </option>`;
+        // Template
+        let template = `<option value=""> * Choose an Media Type </option>`;
         $.each (types, function (index, value)
         {
             if (value !== "")
@@ -130,9 +127,7 @@ function getMediaTypes ()
 
     }).fail (function ()
     {
-        $("div#modal_fail div.modal-header h4.modal-title b").html ("Attention");
-        $("div#modal_fail div.modal-body").html ("System error, please try later or contact the administrator");
-        $("div#modal_fail").modal();
+        showFailModal ();
     });
 }
 
@@ -150,8 +145,8 @@ function getMusicalGenres ()
     {
         let genres = data.split ("|");
         
-        /* Template */
-        let template = `<option value=""> *Choose an Musical Genre </option>`;
+        // Template
+        let template = `<option value=""> * Choose an Musical Genre </option>`;
         $.each (genres, function (index, value)
         {
             if (value !== "")
@@ -164,8 +159,16 @@ function getMusicalGenres ()
 
     }).fail (function ()
     {
-        $("div#modal_fail div.modal-header h4.modal-title b").html ("Attention");
-        $("div#modal_fail div.modal-body").html ("System error, please try later or contact the administrator");
-        $("div#modal_fail").modal();
+        showFailModal ();
     });
+}
+
+/**
+ * Shows an fail modal
+ */
+function showFailModal ()
+{
+    $("div#modal_fail div.modal-header h4.modal-title b").html ("Attention");
+    $("div#modal_fail div.modal-body").html ("System error, please try later or contact the administrator");
+    $("div#modal_fail").modal ();
 }
