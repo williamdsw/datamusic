@@ -1,5 +1,11 @@
 
-body { background-color: #444444; }
+/* || global */
+
+body { 
+    background-color: #444444; 
+}
+
+/* || forms and inputs */
 
 .form-container {
     height: fit-content;
@@ -8,8 +14,7 @@ body { background-color: #444444; }
     box-shadow: 0 0 10px 0px black;
 }
 
-.dark-input
-{
+.dark-input {
     background-color: #40454a;
     color: inherit;
     border: none;
@@ -18,34 +23,17 @@ body { background-color: #444444; }
     outline: none;
 }
 
-.dark-input:focus
-{
+.dark-input:focus {
     background-color: #49535d;
     color: white;
 }
 
-textarea.dark-input
-{
+textarea.dark-input {
     height: 140px;
     resize: none;
 }
 
-input[type="file"].dark-input
-{
-    
-}
-
-.square-button
-{
+.square-button {
     border-radius: 0;
     box-shadow: 0 0 10px 0 black;
-}
-
-@media (max-width: 767px)
-{
-    .form-container { margin-top: 20%; }
-}
-
-hr {
-    color: white;
 }
