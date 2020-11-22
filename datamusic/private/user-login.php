@@ -15,10 +15,12 @@
             // SQL query
             $query = " SELECT user_id, name from user ";
             $query .= " WHERE name = ? ";
-            $query .= " AND DECODE (password, 'mykey') = ? ";
-            
+            // $query .= " AND DECODE (password, 'mykey') = ? ";
+            $query .= " AND password = ? ";
+
             // Bind parameters
             $statement = $connection -> prepare ($query);
+
             $statement -> bind_param ("ss", $name, $password);
             $statement -> execute ();
             $result = $statement -> get_result ();

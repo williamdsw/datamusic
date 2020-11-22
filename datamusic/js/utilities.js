@@ -166,9 +166,18 @@ function getMusicalGenres ()
 /**
  * Shows an fail modal
  */
-function showFailModal ()
-{
-    $("div#modal_fail div.modal-header h4.modal-title b").html ("Attention");
-    $("div#modal_fail div.modal-body").html ("System error, please try later or contact the administrator");
-    $("div#modal_fail").modal ();
+function showFailModal(title, message) {
+    title = (title || 'Attention');
+    message = (message || 'System error, please try later or contact the administrator');
+
+    const modal = document.querySelector('div#modal_fail');
+    if (modal) {
+        const header = modal.querySelector('.modal-title');
+        const body = modal.querySelector('.modal-body');
+        if (header && message) {
+            header.textContent = title;
+            body.textContent = message;
+            $(modal).modal();
+        }
+    }
 }

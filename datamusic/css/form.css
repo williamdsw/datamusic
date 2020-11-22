@@ -1,14 +1,11 @@
 
 body { background-color: #444444; }
 
-#container_form
-{
+.form-container {
     height: fit-content;
-    padding: 15px;
+    padding: 1rem;
     border: 1px solid black;
     box-shadow: 0 0 10px 0px black;
-    margin-top: 10%;
-    margin-bottom: 5%;
 }
 
 .dark-input
@@ -46,6 +43,9 @@ input[type="file"].dark-input
 
 @media (max-width: 767px)
 {
-    #container_form { margin-top: 20%; }
+    .form-container { margin-top: 20%; }
 }
 
+hr {
+    color: white;
+}

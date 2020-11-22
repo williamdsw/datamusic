@@ -16,17 +16,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <!-- libs / css -->
-        <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/menu-bar.css">
-        <link rel="stylesheet" href="css/form.css">
-        <link rel="stylesheet" href="css/modals.css">
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="../libs/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/menu-bar.css">
+        <link rel="stylesheet" href="../css/form.css">
+        <link rel="stylesheet" href="../css/modals.css">
+        <link rel="stylesheet" href="../css/main.css">
         
         <title> Datamusic </title>
     </head>
     <body>
         <!-- header -->
-        <?php include_once ("components/menu-bar.php") ?>
+        <?php include_once ("../components/menu-bar.php") ?>
         
         <div id="container_form" class="container col-sm-12 col-md-8 offset-md-2 col-lg-8 offset-lg-2 bg-dark text-white">
             <div class="row">
@@ -59,9 +59,9 @@
         </div>
 
         <!-- libs / js -->
-        <script src="libs/jquery/jquery-3.4.0.min.js"></script>
-        <script src="libs/popper/popper.min.js"></script>
-        <script src="libs/bootstrap/js/bootstrap.min.js"></script>
-        <script src="js/main.js"></script>
+        <script src="../libs/jquery/jquery-3.4.0.min.js"></script>
+        <script src="../libs/popper/popper.min.js"></script>
+        <script src="../libs/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../js/main.js"></script>
     </body>
 </html>
